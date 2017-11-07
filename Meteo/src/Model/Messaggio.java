@@ -15,7 +15,19 @@ public class Messaggio {
 	private int tempo;
 	private float temperatura;
 	private int vento;
+	/**@deprecated Costruttore vuoto-necessita che tu inserisca tutti i dati con il get **/
 	public Messaggio(){}
+	
+	//**Costruttore essenziale*/
+	public Messaggio(String localita, int tempo, float temperatura, int vento, int cmpioggia) {
+		super();
+		this.localita = localita;
+		this.tempo = tempo;
+		this.temperatura = temperatura;
+		this.vento = vento;
+		this.cmpioggia = cmpioggia;
+	}
+	
 	public String getLocalita() {
 		return localita;
 	}
