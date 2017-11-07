@@ -47,7 +47,4 @@ public class Messaggio {
 		this.cmpioggia = cmpioggia;
 	}
 	private int cmpioggia;
-	public static void main(String[] args) {
-	}
-
 }
