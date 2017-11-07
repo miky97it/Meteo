@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 public class FinestraMeteo extends JFrame{
-	private JPanel contentPane,panel_1,panel_2;;
+	private JPanel contentPane,panel_1,panel_2;
 	private JTabbedPane tabbedPane;
 	private JLabel lblImmettiIlLuogo;
 	private JTextField textField;
