@@ -13,8 +13,9 @@ public class Messaggio {
 	 *6 neve
 	 **/
 	private int Tempo;
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	
 
 	}
 
