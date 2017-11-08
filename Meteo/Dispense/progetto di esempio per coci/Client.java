@@ -60,8 +60,8 @@ public class Client {
 		for (;;) {
 			try {
 				messaggio = tastiera.readLine();
-				// la spedisco al server				
-				out.println(messaggio);				
+				// la spedisco al server						out.println(messaggio);				
+		
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.exit(1);
