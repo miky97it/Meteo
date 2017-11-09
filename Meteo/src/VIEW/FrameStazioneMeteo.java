@@ -70,7 +70,7 @@ public class FrameStazioneMeteo extends JFrame {
 		panel.add(lblTempo);
 		
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Soleggiato", "Nuvoloso", "Piogge deboli", "Piogge forti", "Grandine", "Vento"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"soleggiato", "nubi sparse", "cielo coperto di nuve", "pioggia", "temporale con fulmini", "neve"}));
 		comboBox.setBounds(117, 68, 98, 20);
 		panel.add(comboBox);
 		
@@ -86,5 +86,69 @@ public class FrameStazioneMeteo extends JFrame {
 		btnInvia = new JButton("Invia");
 		btnInvia.setBounds(126, 184, 89, 23);
 		panel.add(btnInvia);
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	public JLabel getLblNewLabel() {
+		return lblNewLabel;
+	}
+
+	public void setLblNewLabel(JLabel lblNewLabel) {
+		this.lblNewLabel = lblNewLabel;
+	}
+
+	public JTextField getTextField() {
+		return textField;
+	}
+
+	public void setTextField(JTextField textField) {
+		this.textField = textField;
+	}
+
+	public JLabel getLblTempo() {
+		return lblTempo;
+	}
+
+	public void setLblTempo(JLabel lblTempo) {
+		this.lblTempo = lblTempo;
+	}
+
+	public JComboBox getComboBox() {
+		return comboBox;
+	}
+
+	public void setComboBox(JComboBox comboBox) {
+		this.comboBox = comboBox;
+	}
+
+	public JLabel getLblTemperatura() {
+		return lblTemperatura;
+	}
+
+	public void setLblTemperatura(JLabel lblTemperatura) {
+		this.lblTemperatura = lblTemperatura;
+	}
+
+	public JTextField getTextField_1() {
+		return textField_1;
+	}
+
+	public void setTextField_1(JTextField textField_1) {
+		this.textField_1 = textField_1;
+	}
+
+	public JButton getBtnInvia() {
+		return btnInvia;
+	}
+
+	public void setBtnInvia(JButton btnInvia) {
+		this.btnInvia = btnInvia;
 	}
 }
