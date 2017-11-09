@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 
 public class FrameStazioneMeteo extends JFrame {
 
@@ -21,6 +22,7 @@ public class FrameStazioneMeteo extends JFrame {
 	private JComboBox comboBox;
 	private JLabel lblTemperatura;
 	private JTextField textField_1;
+	private JButton btnInvia;
 
 	/**
 	 * Launch the application.
@@ -80,5 +82,9 @@ public class FrameStazioneMeteo extends JFrame {
 		textField_1.setBounds(102, 114, 113, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
+		
+		btnInvia = new JButton("Invia");
+		btnInvia.setBounds(126, 184, 89, 23);
+		panel.add(btnInvia);
 	}
 }
