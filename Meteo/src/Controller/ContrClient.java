@@ -8,6 +8,8 @@ public class ContrClient implements ActionListener,ChangeListener{
 	private FinestraMeteo f;
 	public ContrClient(FinestraMeteo f){
 		this.f=f;
+		f.getBtnInvia().addActionListener(this);
+		f.getTabbedPane().addChangeListener(this);
 	}
 	private void inviaDati(String s){
 		
@@ -24,9 +26,9 @@ public class ContrClient implements ActionListener,ChangeListener{
 	@Override
 	public void stateChanged(ChangeEvent evt){
 		switch(f.getTabbedPane().getSelectedIndex()){
-			case 1: f.getTextField().setText("");
+			case 0: f.getTextField().setText("");
 			break;
-			case 2:
+			case 1:
 		}
 	}
 }
