@@ -6,7 +6,6 @@ import VIEW.FrameStazioneMeteo;
 public class Main{
 	public static void main(String[] args){
 			FinestraMeteo f=new FinestraMeteo();
-			FrameStazioneMeteo fm=new FrameStazioneMeteo();
 			ContrClient c=new ContrClient(f);
 	}
 }
