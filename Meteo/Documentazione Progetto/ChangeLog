@@ -2,7 +2,7 @@ Ragazzi Scriviamo qui le cose da fare e le cose fatte:
 Da fare:
 
 [Per coci] Rendere idirizzi e porte dimanici: in gestore client il socket deve avere i parametri presi da due textfield;
-
+[per bort] Icone meteo; Icon icon=Icon("/src/icone/sole.ico"); lacosa.setIcon(icon);
 
 
 FATTE:

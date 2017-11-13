@@ -1,6 +1,7 @@
 package Server;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 public class Server {
 	private final DatagramSocket s;
 	private DatagramPacket pkt;
@@ -11,21 +12,20 @@ public class Server {
 	}
 	
 		public Server(int PORT) throws Exception{
-			System.out.printf("[INFO]Server ready to recive on port: %d..\n", PORT);
+			System.out.printf("[INFO]Server ready to recive on[%s:%d]..\n",InetAddress.getLocalHost().toString(),PORT);
 			s = new DatagramSocket(PORT);
 			String CMD;
 			boolean running=true;
-			System.out.println("[INFO]Frame Server avviato");
+			System.out.println("[INFO]Server avviato");
 			for (;running;) {
-				
+				pkt = new DatagramPacket(buf, buf.length);
+				try {
+					s.receive(pkt);
+				} catch (Exception e) {}
+				CMD = new String(pkt.getData(), 0, pkt.getLength());	
+				System.out.printf("[DATA]Recevuto  <%s> from [%s:%s]..\n", pkt.getLength(), CMD, pkt.getAddress(), pkt.getPort());
+				running = !CMD.equals("END");
 			}
-			pkt = new DatagramPacket(buf, buf.length);
-			try {
-				s.receive(pkt);
-			} catch (Exception e) {}
-			CMD = new String(pkt.getData(), 0, pkt.getLength());	
-			System.out.printf("[DATA]> recive %d Byte message  \'%s\' from [%s:%s]..\n", pkt.getLength(), CMD, pkt.getAddress(), pkt.getPort());
-			running = !CMD.equals("END");
 			System.out.println("[INFO]Remote Command! Server Closed..");
 			s.close();
 		}

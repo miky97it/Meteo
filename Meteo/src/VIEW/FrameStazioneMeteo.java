@@ -86,6 +86,8 @@ public class FrameStazioneMeteo extends JFrame {
 		btnInvia = new JButton("Invia");
 		btnInvia.setBounds(126, 184, 89, 23);
 		panel.add(btnInvia);
+		
+		this.setVisible(true);
 	}
 
 	public JPanel getPanel() {
