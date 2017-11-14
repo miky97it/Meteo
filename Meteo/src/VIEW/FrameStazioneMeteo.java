@@ -27,12 +27,12 @@ public class FrameStazioneMeteo extends JFrame {
 	private JLabel lblTempo;
 	private JComboBox<JLabel> comboBoxTempo;
 	private JLabel vento;
-	private JSpinner textField_vento;
+	private JSpinner spinner_vento;
 	private JButton btnInvia;
 	private JLabel labelTemperatura;
 	private JSpinner spinnerTemperatura;
 	private JLabel labelPioggia;
-	private JSpinner spinner;
+	private JSpinner spinnerpioggia;
 	private JLabel lblNewLabel_1;
 	private JLabel lblKmh;
 	private JLabel lblLm;
@@ -103,10 +103,10 @@ public class FrameStazioneMeteo extends JFrame {
 		vento.setBounds(10, 111, 82, 14);
 		panel.add(vento);
 		
-		textField_vento = new JSpinner();
-		textField_vento.setModel(new SpinnerNumberModel(0, 0, 200, 1));
-		textField_vento.setBounds(102, 108, 87, 20);
-		panel.add(textField_vento);
+		spinner_vento = new JSpinner();
+		spinner_vento.setModel(new SpinnerNumberModel(0, 0, 200, 1));
+		spinner_vento.setBounds(102, 108, 87, 20);
+		panel.add(spinner_vento);
 		
 		btnInvia = new JButton("Invia");
 		btnInvia.setBounds(10, 168, 205, 34);
@@ -125,9 +125,9 @@ public class FrameStazioneMeteo extends JFrame {
 		labelPioggia.setBounds(10, 143, 82, 14);
 		panel.add(labelPioggia);
 		
-		spinner = new JSpinner();
-		spinner.setBounds(102, 139, 87, 20);
-		panel.add(spinner);
+		spinnerpioggia = new JSpinner();
+		spinnerpioggia.setBounds(102, 139, 87, 20);
+		panel.add(spinnerpioggia);
 		
 		lblNewLabel_1 = new JLabel("\u02DAc");
 		lblNewLabel_1.setBounds(192, 79, 46, 14);
@@ -146,6 +146,10 @@ public class FrameStazioneMeteo extends JFrame {
 		this.setVisible(true);
 	}
 
+	public JSpinner getSpinner_vento() {
+		return spinner_vento;
+	}
+
 	public JTextField getTextFieldLocalitá() {
 		return textFieldLocalitá;
 	}
@@ -154,16 +158,16 @@ public class FrameStazioneMeteo extends JFrame {
 		return comboBoxTempo;
 	}
 
-	public JTextField getTextField_vento() {
-		return textField_vento;
-	}
-
 	public JButton getBtnInvia() {
 		return btnInvia;
 	}
 
 	public JSpinner getSpinnerTemperatura() {
 		return spinnerTemperatura;
+	}
+
+	public JSpinner getSpinner() {
+		return spinnerpioggia;
 	}
 
 }

@@ -1,10 +1,13 @@
 package Model;
 
-public class Messaggio {
+import java.io.Serializable;
+
+public class Messaggio implements Serializable{
 	/**
 	 * É una citta' o provincia*/
 	private String localita;
 	/**
+	 *0 errore
 	 *1 soleggiato
 	 *2 nubi sparse
 	 *3 cielo coperto di nuve

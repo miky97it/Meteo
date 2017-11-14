@@ -21,7 +21,7 @@ public class ContrStazione implements ActionListener{
 			
 			String localita=fm.getTextFieldLocalitá().getText();
 			String supp=fm.getComboBoxTempo().getSelectedItem().toString();
-			int tempo;
+			int tempo=0;
 				switch (supp){
 					case "soleggiato": tempo=1;break;
 					case "nubi sparse": tempo=2;break;
@@ -33,9 +33,15 @@ public class ContrStazione implements ActionListener{
 			float temperatura=Float.valueOf(fm.getSpinnerTemperatura().getValue().toString());
 			//this.inviaDati(fm.getTextField().getText());
 			//fm.getTextField().getText();
-			int vento=Integer.parseInt(fm.getTextField_vento().getText());
+			int vento= (int) fm.getSpinner_vento().getValue();
+			int cmpioggia=(Integer) fm.getSpinner().getValue();
 			Messaggio m=new Messaggio(localita,tempo,temperatura,vento,cmpioggia);
 			InviaDati.inviaDati(m,"192.168.4.22",1234);
+			//To pass:
+			intent.putExtra("MyClass", obj);
+
+			// To retrieve object in second Activity
+			getIntent().getSerializableExtra("MyClass");
 
 		}
 		/*else{

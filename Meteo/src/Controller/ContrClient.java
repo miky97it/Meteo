@@ -18,6 +18,7 @@ public class ContrClient implements ActionListener,ChangeListener{
 	private FinestraMeteo f;
 	//Socket socket;
 	PrintWriter out;
+//	String IP="128728937";
 
 	//String MSG;
 	//final InetAddress IP = InetAddress.getByName((args.length > 0) ? args[0] : "localhost");
