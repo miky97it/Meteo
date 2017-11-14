@@ -37,12 +37,6 @@ public class ContrStazione implements ActionListener{
 			int cmpioggia=(Integer) fm.getSpinner().getValue();
 			Messaggio m=new Messaggio(localita,tempo,temperatura,vento,cmpioggia);
 			InviaDati.inviaDati(m,"192.168.4.22",1234);
-			//To pass:
-			intent.putExtra("MyClass", obj);
-
-			// To retrieve object in second Activity
-			getIntent().getSerializableExtra("MyClass");
-
 		}
 		/*else{
 			String combo=(String) fm.getComboBox().getSelectedItem();

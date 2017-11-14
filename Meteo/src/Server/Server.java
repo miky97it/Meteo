@@ -23,7 +23,10 @@ public class Server {
 					s.receive(pkt);
 				} catch (Exception e) {}
 				CMD = new String(pkt.getData(), 0, pkt.getLength());	
-				System.out.printf("[DATA]Recevuto  <%s> from [%s:%s]..\n", pkt.getLength(), CMD, pkt.getAddress(), pkt.getPort());
+				System.out.println("[DATA]----Recevuto un pacchetto----");
+				System.out.println("\t Lunghezza: \t"+pkt.getLength());
+				System.out.println("\t Da: \t\t"+pkt.getAddress()+":"+pkt.getPort());
+				System.out.println("\t Contenuto:\t"+CMD);
 				running = !CMD.equals("END");
 			}
 			System.out.println("[INFO]Remote Command! Server Closed..");

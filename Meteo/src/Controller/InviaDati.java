@@ -27,7 +27,7 @@ public class InviaDati implements Serializable{
 			IP=null;
 		}
 		try {
-			System.out.printf("[INFO]Invio di <\'%s\'> a [%s:%d]..\n", whatMSG, IP, throwWhatPort);
+			System.out.printf("[INFO]Invio di <\'%s\'> STRINGA ! a [%s:%d]..\n", whatMSG, IP, throwWhatPort);
 		//	out = new PrintWriter(socket.getOutputStream(), true);		
 			
 				//for (String MSG: args) {
@@ -53,7 +53,6 @@ public class InviaDati implements Serializable{
 			IP=null;
 		}
 		try {
-			System.out.printf("[INFO]Invio di <\'%s\'> a [%s:%d]..\n", MSG.toString(), IP, throwWhatPort);
 		//	out = new PrintWriter(socket.getOutputStream(), true);		
 			
 				//for (String MSG: args) {
@@ -66,7 +65,8 @@ public class InviaDati implements Serializable{
 					      os.writeObject(MSG);
 					      os.flush();
 					      byte[] sendBuf = byteStream.toByteArray();
-					      s.send(new DatagramPacket(sendBuf, MSG.toString().getBytes().length, IP, throwWhatPort));
+					      System.out.printf("[INFO]Invio di <\'%s\'> a [%s:%d]..\n", sendBuf, IP, throwWhatPort);
+					      s.send(new DatagramPacket(sendBuf,sendBuf.length, IP, throwWhatPort));
 					      os.close();
 					   
 					
