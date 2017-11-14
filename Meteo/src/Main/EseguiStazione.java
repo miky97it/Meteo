@@ -7,6 +7,5 @@ public class EseguiStazione{
 			FrameStazioneMeteo fm=new FrameStazioneMeteo();
 			ContrStazione ctr=new ContrStazione(fm);
 			System.out.println("[INFO]Controller e Frame Stazione lanciati");
-
 	}
 }

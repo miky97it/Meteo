@@ -18,28 +18,19 @@ public class ContrClient implements ActionListener,ChangeListener{
 	private FinestraMeteo f;
 	//Socket socket;
 	PrintWriter out;
-	InetAddress IP;
-	final int PORT = 1234;
+
 	//String MSG;
 	//final InetAddress IP = InetAddress.getByName((args.length > 0) ? args[0] : "localhost");
 	//final int PORT = (args.length > 1) ? Integer.parseInt(args[1]) : 1234;
 	//final String MSG = (args.length > 2) ? args[2] : "GodAbenFitz";
 	public ContrClient(FinestraMeteo f){
 		this.f=f;
-		try {
-			IP=InetAddress.getByName(/*"192.168.4.22"*/"192.168.43.78");
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("[ERROR] IP not valid !");
-			IP=null;
-		}
 		f.getBtnInvia().addActionListener(this);
 		f.getTabbedPane().addChangeListener(this);
 	}
-	private void inviaDati(String MSG){
+	//private void inviaDati(String MSG){
 		//Bortot
-		try {
+		/*try {
 			System.out.printf("[INFO]Invio di <\'%s\'> a [%s:%d]..\n", MSG, IP, PORT);
 		//	out = new PrintWriter(socket.getOutputStream(), true);		
 			
@@ -54,13 +45,14 @@ public class ContrClient implements ActionListener,ChangeListener{
 			e.printStackTrace();
 		}
 		//----
-	}
+	}*/
 	@Override
 	public void actionPerformed(ActionEvent evt){		//invio
 		if(evt.getSource()==f.getBtnInvia()){
 			String s=f.getTextField().getText();
 			//System.out.println("Ho letto: "+s);
-			this.inviaDati(s);
+			//this.inviaDati(s);
+			InviaDati.inviaDati(s,"192.168.4.22",1234);
 			f.getTextField().setText("");
 		}
 		else{

@@ -8,26 +8,44 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JSpinner;
+import javax.swing.UIManager;
+import javax.swing.SpinnerNumberModel;
 
 public class FrameStazioneMeteo extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
 	private JLabel lblNewLabel;
-	private JTextField textField;
+	private JTextField textFieldLocalitá;
 	private JLabel lblTempo;
-	private JComboBox comboBox;
-	private JLabel lblTemperatura;
-	private JTextField textField_1;
+	private JComboBox<JLabel> comboBoxTempo;
+	private JLabel vento;
+	private JSpinner textField_vento;
 	private JButton btnInvia;
+	private JLabel labelTemperatura;
+	private JSpinner spinnerTemperatura;
+	private JLabel labelPioggia;
+	private JSpinner spinner;
+	private JLabel lblNewLabel_1;
+	private JLabel lblKmh;
+	private JLabel lblLm;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -45,112 +63,107 @@ public class FrameStazioneMeteo extends JFrame {
 	 */
 	public FrameStazioneMeteo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 242, 252);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(10, 11, 414, 240);
+		panel.setBounds(0, 0, 226, 213);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		lblNewLabel = new JLabel("Localit\u00E0");
-		lblNewLabel.setBounds(10, 24, 65, 14);
+		lblNewLabel.setBounds(10, 15, 65, 14);
 		panel.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(102, 21, 113, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		textFieldLocalitá = new JTextField();
+		textFieldLocalitá.setBounds(102, 12, 113, 20);
+		panel.add(textFieldLocalitá);
+		textFieldLocalitá.setColumns(10);
 		
 		lblTempo = new JLabel("Tempo");
-		lblTempo.setBounds(10, 71, 46, 14);
+		lblTempo.setBounds(10, 47, 46, 14);
 		panel.add(lblTempo);
+		/*
+
+        ComboBoxRenderer renderer= new ComboBoxRenderer();
+        renderer.setPreferredSize(new Dimension(200, 130));
+        petList.setRenderer(renderer);
+        petList.setMaximumRowCount(3);
+		*/
+		// versione 1.2
+		comboBoxTempo = new JComboBox<>();
+		comboBoxTempo.setModel(new DefaultComboBoxModel(new String[] {"soleggiato", "nubi sparse", "cielo coperto di nuvole", "pioggia", "temporale con fulmini", "neve"}));
+		comboBoxTempo.setBounds(102, 44, 113, 20);
+		panel.add(comboBoxTempo);
 		
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"soleggiato", "nubi sparse", "cielo coperto di nuve", "pioggia", "temporale con fulmini", "neve"}));
-		comboBox.setBounds(117, 68, 98, 20);
-		panel.add(comboBox);
+		vento = new JLabel("vento");
+		vento.setBounds(10, 111, 82, 14);
+		panel.add(vento);
 		
-		lblTemperatura = new JLabel("Temperatura");
-		lblTemperatura.setBounds(10, 117, 82, 14);
-		panel.add(lblTemperatura);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(102, 114, 113, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		textField_vento = new JSpinner();
+		textField_vento.setModel(new SpinnerNumberModel(0, 0, 200, 1));
+		textField_vento.setBounds(102, 108, 87, 20);
+		panel.add(textField_vento);
 		
 		btnInvia = new JButton("Invia");
-		btnInvia.setBounds(126, 184, 89, 23);
+		btnInvia.setBounds(10, 168, 205, 34);
 		panel.add(btnInvia);
+		
+		labelTemperatura = new JLabel("Temperatura");
+		labelTemperatura.setBounds(10, 79, 82, 14);
+		panel.add(labelTemperatura);
+		
+		spinnerTemperatura = new JSpinner();
+		spinnerTemperatura.setModel(new SpinnerNumberModel(new Float(15), new Float(-273), new Float(60), new Float(0.5)));
+		spinnerTemperatura.setBounds(102, 77, 87, 20);
+		panel.add(spinnerTemperatura);
+		
+		labelPioggia = new JLabel("pioggia");
+		labelPioggia.setBounds(10, 143, 82, 14);
+		panel.add(labelPioggia);
+		
+		spinner = new JSpinner();
+		spinner.setBounds(102, 139, 87, 20);
+		panel.add(spinner);
+		
+		lblNewLabel_1 = new JLabel("\u02DAc");
+		lblNewLabel_1.setBounds(192, 79, 46, 14);
+		panel.add(lblNewLabel_1);
+		
+		lblKmh = new JLabel("km/h");
+		lblKmh.setBounds(192, 111, 46, 14);
+		panel.add(lblKmh);
+		
+		lblLm = new JLabel("l/m\u00B2");
+		lblLm.setBounds(192, 143, 46, 14);
+		panel.add(lblLm);
+		
+
 		
 		this.setVisible(true);
 	}
 
-	public JPanel getPanel() {
-		return panel;
+	public JTextField getTextFieldLocalitá() {
+		return textFieldLocalitá;
 	}
 
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
+	public JComboBox<JLabel> getComboBoxTempo() {
+		return comboBoxTempo;
 	}
 
-	public JLabel getLblNewLabel() {
-		return lblNewLabel;
-	}
-
-	public void setLblNewLabel(JLabel lblNewLabel) {
-		this.lblNewLabel = lblNewLabel;
-	}
-
-	public JTextField getTextField() {
-		return textField;
-	}
-
-	public void setTextField(JTextField textField) {
-		this.textField = textField;
-	}
-
-	public JLabel getLblTempo() {
-		return lblTempo;
-	}
-
-	public void setLblTempo(JLabel lblTempo) {
-		this.lblTempo = lblTempo;
-	}
-
-	public JComboBox getComboBox() {
-		return comboBox;
-	}
-
-	public void setComboBox(JComboBox comboBox) {
-		this.comboBox = comboBox;
-	}
-
-	public JLabel getLblTemperatura() {
-		return lblTemperatura;
-	}
-
-	public void setLblTemperatura(JLabel lblTemperatura) {
-		this.lblTemperatura = lblTemperatura;
-	}
-
-	public JTextField getTextField_1() {
-		return textField_1;
-	}
-
-	public void setTextField_1(JTextField textField_1) {
-		this.textField_1 = textField_1;
+	public JTextField getTextField_vento() {
+		return textField_vento;
 	}
 
 	public JButton getBtnInvia() {
 		return btnInvia;
 	}
 
-	public void setBtnInvia(JButton btnInvia) {
-		this.btnInvia = btnInvia;
+	public JSpinner getSpinnerTemperatura() {
+		return spinnerTemperatura;
 	}
+
 }

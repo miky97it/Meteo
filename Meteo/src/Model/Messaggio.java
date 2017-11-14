@@ -15,6 +15,8 @@ public class Messaggio {
 	private int tempo;
 	private float temperatura;
 	private int vento;
+	private int cmpioggia;
+
 	/**@deprecated Costruttore vuoto-necessita che tu inserisca tutti i dati con il get **/
 	public Messaggio(){}
 	
@@ -58,5 +60,4 @@ public class Messaggio {
 	public void setCmpioggia(int cmpioggia) {
 		this.cmpioggia = cmpioggia;
 	}
-	private int cmpioggia;
 }
