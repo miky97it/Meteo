@@ -1,5 +1,12 @@
 package Model;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class Messaggio implements Serializable{
@@ -7,7 +14,7 @@ public class Messaggio implements Serializable{
 	 * É una citta' o provincia*/
 	private String localita;
 	/**
-	 *0 errore
+	 *0 RISERVATO PER LA MANCANZA DATO DA PARTE DEL SERVER
 	 *1 soleggiato
 	 *2 nubi sparse
 	 *3 cielo coperto di nuve
@@ -19,11 +26,10 @@ public class Messaggio implements Serializable{
 	private float temperatura;
 	private int vento;
 	private int cmpioggia;
-
-	/**@deprecated Costruttore vuoto-necessita che tu inserisca tutti i dati con il get **/
+	/**Solo per il ricevente*/
 	public Messaggio(){}
 	
-	//**Costruttore essenziale*/
+	//**SOLO PER IL MITTENTE*/
 	public Messaggio(String localita, int tempo, float temperatura, int vento, int cmpioggia) {
 		super();
 		this.localita = localita;
@@ -62,5 +68,16 @@ public class Messaggio implements Serializable{
 	}
 	public void setCmpioggia(int cmpioggia) {
 		this.cmpioggia = cmpioggia;
+	}
+	private void writeObject(ObjectOutputStream out) throws IOException { 
+		out.defaultWriteObject();  
+		}
+	private void readObject(ObjectInputStream in)throws IOException, ClassNotFoundException  {
+		in.defaultReadObject();  
+		}
+	@Override
+	public String toString() {
+		return "Messaggio [localita=" + localita + ", tempo=" + tempo + ", temperatura=" + temperatura + ", vento="
+				+ vento + ", cmpioggia=" + cmpioggia + "]";
 	}
 }

@@ -36,7 +36,7 @@ public class ContrStazione implements ActionListener{
 			int vento= (int) fm.getSpinner_vento().getValue();
 			int cmpioggia=(Integer) fm.getSpinner().getValue();
 			Messaggio m=new Messaggio(localita,tempo,temperatura,vento,cmpioggia);
-			InviaDati.inviaDati(m,"192.168.4.22",1234);
+			InterfacciaDati.inviaDati(m,"127.0.0.1",1234);
 		}
 		/*else{
 			String combo=(String) fm.getComboBox().getSelectedItem();

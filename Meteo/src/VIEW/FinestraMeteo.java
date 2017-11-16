@@ -6,51 +6,104 @@ import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 public class FinestraMeteo extends JFrame{
-	private JPanel contentPane,panel_1,panel_2;
-	private JTabbedPane tabbedPane;
+	private JPanel contentPane,panel_1;
 	private JLabel lblImmettiIlLuogo;
 	private JTextField textField;
 	private JButton btnInvia;
+	private JPanel panel;
+	public JLabel lblIlMeteoDi;
+	public  JLabel lblTemperatura;
+	public  JLabel lblIcona;
+	public  JLabel lblVento;
+	public  JLabel lblPioggia;
+	public  JLabel lblNonHoQuesto;
 	public FinestraMeteo(){
-		this.setTitle("Richiedente");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FinestraMeteo.class.getResource("/media/1sole.png")));
+		this.setTitle("Client");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 268, 307);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(10, 11, 414, 240);
-		contentPane.add(tabbedPane);
+		panel = new JPanel();
+		panel.setBounds(0, 0, 252, 268);
+		contentPane.add(panel);
+		panel.setLayout(null);
 		
 		panel_1 = new JPanel();
-		tabbedPane.addTab("request", null, panel_1, null);
+		panel_1.setBounds(0, 0, 252, 268);
+		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		lblImmettiIlLuogo = new JLabel("immetti il luogo per ottenere le informazioni");
-		lblImmettiIlLuogo.setBounds(10, 11, 264, 31);
+		lblImmettiIlLuogo = new JLabel("Di dove vuoi sapere il meteo ?");
+		lblImmettiIlLuogo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblImmettiIlLuogo.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblImmettiIlLuogo.setBounds(10, 20, 232, 31);
 		panel_1.add(lblImmettiIlLuogo);
 		
 		textField = new JTextField();
-		textField.setBounds(284, 16, 86, 20);
+		textField.setBounds(10, 71, 113, 31);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
 		btnInvia = new JButton("invia");
-		btnInvia.setBounds(178, 147, 89, 23);
+		btnInvia.setBounds(133, 71, 109, 31);
 		panel_1.add(btnInvia);
 		
-		panel_2 = new JPanel();
-		tabbedPane.addTab("stampa", null, panel_2, null);
-		panel_2.setLayout(null);
+		lblIlMeteoDi = new JLabel("il meteo di \u00E9");
+		lblIlMeteoDi.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIlMeteoDi.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblIlMeteoDi.setBounds(10, 122, 232, 19);
+		panel_1.add(lblIlMeteoDi);
+		
+		lblTemperatura = new JLabel("temperatura:");
+		lblTemperatura.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTemperatura.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblTemperatura.setBounds(10, 161, 86, 14);
+		panel_1.add(lblTemperatura);
+		
+		lblIcona = new JLabel("");
+		lblIcona.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIcona.setIcon(new ImageIcon(FinestraMeteo.class.getResource("/media/1sole.png")));
+		lblIcona.setBounds(133, 137, 109, 106);
+		panel_1.add(lblIcona);
+		
+		lblVento = new JLabel("vento:");
+		lblVento.setHorizontalAlignment(SwingConstants.LEFT);
+		lblVento.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblVento.setBounds(10, 195, 86, 14);
+		panel_1.add(lblVento);
+		
+		lblPioggia = new JLabel("pioggia");
+		lblPioggia.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPioggia.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPioggia.setBounds(10, 229, 86, 14);
+		panel_1.add(lblPioggia);
+		
+		lblNonHoQuesto = new JLabel("Non ho questo dato");
+		lblNonHoQuesto.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNonHoQuesto.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNonHoQuesto.setBounds(10, 113, 232, 31);
+		panel_1.add(lblNonHoQuesto);
 		
 		this.setVisible(true);
 	}
-	public JTabbedPane getTabbedPane() {
-		return tabbedPane;
+
+	public void setTextField(JTextField textField) {
+		this.textField = textField;
 	}
+
+	public void setBtnInvia(JButton btnInvia) {
+		this.btnInvia = btnInvia;
+	}
+
 	public JTextField getTextField() {
 		return textField;
 	}

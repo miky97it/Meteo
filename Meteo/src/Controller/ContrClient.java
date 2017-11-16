@@ -10,11 +10,13 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import javax.swing.ImageIcon;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Model.Messaggio;
 import VIEW.FinestraMeteo;
-public class ContrClient implements ActionListener,ChangeListener{
+public class ContrClient implements ActionListener{
 	private FinestraMeteo f;
 	//Socket socket;
 	PrintWriter out;
@@ -26,9 +28,18 @@ public class ContrClient implements ActionListener,ChangeListener{
 	//final String MSG = (args.length > 2) ? args[2] : "GodAbenFitz";
 	public ContrClient(FinestraMeteo f){
 		this.f=f;
+		resetframe();
 		f.getBtnInvia().addActionListener(this);
-		f.getTabbedPane().addChangeListener(this);
 	}
+	private void resetframe() {
+		f.lblIcona.setVisible(false);
+		f.lblTemperatura.setVisible(false);
+		f.lblIlMeteoDi.setVisible(false);
+		f.lblNonHoQuesto.setVisible(false);
+		f.lblPioggia.setVisible(false);
+		f.lblVento.setVisible(false);
+	
+}
 	//private void inviaDati(String MSG){
 		//Bortot
 		/*try {
@@ -50,21 +61,26 @@ public class ContrClient implements ActionListener,ChangeListener{
 	@Override
 	public void actionPerformed(ActionEvent evt){		//invio
 		if(evt.getSource()==f.getBtnInvia()){
+			resetframe();
 			String s=f.getTextField().getText();
 			//System.out.println("Ho letto: "+s);
 			//this.inviaDati(s);
-			InviaDati.inviaDati(s,"192.168.4.22",1234);
-			f.getTextField().setText("");
-		}
-		else{
+			Messaggio risposta=InterfacciaDati.inviaDati("#"+s,"192.168.4.22",1234);//Nessun json inizia per #
+			if(risposta.getTempo()==0){
+				f.lblNonHoQuesto.setVisible(true);
+			}else{
+				f.lblIcona.setIcon(new ImageIcon(FinestraMeteo.class.getResource(getIcona())));
+				f.lblIcona.setVisible(true);
+			}
+			//f.getTextField().setText("");
+						
+		}else{
+			System.out.println("[ERROR] action non implementata");
 		}
 	}
-	@Override
-	public void stateChanged(ChangeEvent evt){			//cambio tab
-		switch(f.getTabbedPane().getSelectedIndex()){
-			case 0: f.getTextField().setText("");
-			break;
-			case 1:
+	private String getIcona(int caso){
+		switch(caso){
+			case 1:return "/media/1sole.png";
 		}
 	}
 }
