@@ -23,6 +23,7 @@ public class FinestraMeteo extends JFrame{
 	public  JLabel lblPioggia;
 	public  JLabel lblNonHoQuesto;
 	public FinestraMeteo(){
+		setAlwaysOnTop(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FinestraMeteo.class.getResource("/media/1sole.png")));
 		this.setTitle("Client");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,46 +46,40 @@ public class FinestraMeteo extends JFrame{
 		lblImmettiIlLuogo = new JLabel("Di dove vuoi sapere il meteo ?");
 		lblImmettiIlLuogo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImmettiIlLuogo.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblImmettiIlLuogo.setBounds(10, 20, 232, 31);
+		lblImmettiIlLuogo.setBounds(10, 12, 232, 31);
 		panel_1.add(lblImmettiIlLuogo);
 		
 		textField = new JTextField();
-		textField.setBounds(10, 71, 113, 31);
+		textField.setBounds(10, 55, 113, 31);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
 		btnInvia = new JButton("invia");
-		btnInvia.setBounds(133, 71, 109, 31);
+		btnInvia.setBounds(133, 54, 109, 31);
 		panel_1.add(btnInvia);
 		
 		lblIlMeteoDi = new JLabel("il meteo di \u00E9");
 		lblIlMeteoDi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIlMeteoDi.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblIlMeteoDi.setBounds(10, 122, 232, 19);
+		lblIlMeteoDi.setBounds(10, 98, 232, 28);
 		panel_1.add(lblIlMeteoDi);
 		
 		lblTemperatura = new JLabel("temperatura:");
 		lblTemperatura.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTemperatura.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblTemperatura.setBounds(10, 161, 86, 14);
+		lblTemperatura.setBounds(10, 138, 199, 31);
 		panel_1.add(lblTemperatura);
-		
-		lblIcona = new JLabel("");
-		lblIcona.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIcona.setIcon(new ImageIcon(FinestraMeteo.class.getResource("/media/1sole.png")));
-		lblIcona.setBounds(133, 137, 109, 106);
-		panel_1.add(lblIcona);
 		
 		lblVento = new JLabel("vento:");
 		lblVento.setHorizontalAlignment(SwingConstants.LEFT);
 		lblVento.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblVento.setBounds(10, 195, 86, 14);
+		lblVento.setBounds(10, 181, 126, 31);
 		panel_1.add(lblVento);
 		
 		lblPioggia = new JLabel("pioggia");
 		lblPioggia.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPioggia.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPioggia.setBounds(10, 229, 86, 14);
+		lblPioggia.setBounds(10, 224, 126, 28);
 		panel_1.add(lblPioggia);
 		
 		lblNonHoQuesto = new JLabel("Non ho questo dato");
@@ -92,6 +87,12 @@ public class FinestraMeteo extends JFrame{
 		lblNonHoQuesto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNonHoQuesto.setBounds(10, 113, 232, 31);
 		panel_1.add(lblNonHoQuesto);
+		
+		lblIcona = new JLabel("");
+		lblIcona.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIcona.setIcon(new ImageIcon(FinestraMeteo.class.getResource("/media/1sole.png")));
+		lblIcona.setBounds(133, 137, 109, 106);
+		panel_1.add(lblIcona);
 		
 		this.setVisible(true);
 	}

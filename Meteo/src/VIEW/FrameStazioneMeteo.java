@@ -42,7 +42,7 @@ public class FrameStazioneMeteo extends JFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -62,6 +62,7 @@ public class FrameStazioneMeteo extends JFrame {
 	 * Create the frame.
 	 */
 	public FrameStazioneMeteo() {
+		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 242, 252);
 		contentPane = new JPanel();

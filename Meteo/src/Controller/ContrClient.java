@@ -69,7 +69,15 @@ public class ContrClient implements ActionListener{
 			if(risposta.getTempo()==0){
 				f.lblNonHoQuesto.setVisible(true);
 			}else{
-				f.lblIcona.setIcon(new ImageIcon(FinestraMeteo.class.getResource(getIcona())));
+				f.lblTemperatura.setText("Temperatura:"+risposta.getTemperatura()+"\u02DAc");
+				f.lblTemperatura.setVisible(true);
+				f.lblIlMeteoDi.setText("il meteo di "+risposta.getLocalita());//voltamente la ho preso da qui e non dalla domanda perché cosí faccio anche debug
+				f.lblIlMeteoDi.setVisible(true);
+				f.lblPioggia.setText("Pioggia: "+risposta.getCmpioggia()+" l/m\u00B2");
+				f.lblPioggia.setVisible(true);
+				f.lblVento.setText("Vento: "+risposta.getVento()+" km/h");
+				f.lblVento.setVisible(true);
+				f.lblIcona.setIcon(new ImageIcon(FinestraMeteo.class.getResource(getIcona(risposta.getTempo()))));//setta l'icona
 				f.lblIcona.setVisible(true);
 			}
 			//f.getTextField().setText("");
@@ -81,6 +89,12 @@ public class ContrClient implements ActionListener{
 	private String getIcona(int caso){
 		switch(caso){
 			case 1:return "/media/1sole.png";
+			case 2:return "/media/2nubi.png";
+			case 3:return "/media/3coperto.png";
+			case 4:return "/media/4pioggia.png";
+			case 5:return "/media/5temporale.png";
+			case 6:return "/media/6neve.png";
 		}
+		return null;
 	}
 }
