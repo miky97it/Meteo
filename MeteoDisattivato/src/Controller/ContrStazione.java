@@ -38,8 +38,6 @@ public class ContrStazione implements ActionListener{
 			Messaggio m=new Messaggio(localita,tempo,temperatura,vento,cmpioggia);
 			InterfacciaDati.inviaDati(m,"127.0.0.1",1234);
 		}
-	//	if(evt.getSource()==fm.){
-
 		/*else{
 			String combo=(String) fm.getComboBox().getSelectedItem();
 			switch(combo){

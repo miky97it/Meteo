@@ -1,4 +1,4 @@
-package Main;
+package main;
 import Controller.ContrClient;
 import VIEW.FinestraMeteo;
 import VIEW.FrameStazioneMeteo;

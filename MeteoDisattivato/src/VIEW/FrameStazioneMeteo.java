@@ -21,7 +21,6 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Color;
 
 public class FrameStazioneMeteo extends JFrame {
 
@@ -46,7 +45,6 @@ public class FrameStazioneMeteo extends JFrame {
 	private JLabel lblIndirizzoIpServer;
 	private JSeparator separator;
 	private JButton btnInvia_1;
-	private JLabel lblBeta;
 
 	/**
 	 * Launch the application.
@@ -86,13 +84,6 @@ public class FrameStazioneMeteo extends JFrame {
 		panel.setBounds(0, 0, 226, 357);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
-		lblBeta = new JLabel("Beta");
-		lblBeta.setForeground(Color.RED);
-		lblBeta.setFont(new Font("Tahoma", Font.PLAIN, 57));
-		lblBeta.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBeta.setBounds(10, 11, 205, 44);
-		panel.add(lblBeta);
 		
 		lblNewLabel = new JLabel("Localit\u00E0");
 		lblNewLabel.setBounds(10, 149, 65, 14);
@@ -150,15 +141,15 @@ public class FrameStazioneMeteo extends JFrame {
 		panel.add(spinnerpioggia);
 		
 		lblNewLabel_1 = new JLabel("\u02DAc");
-		lblNewLabel_1.setBounds(189, 211, 46, 14);
+		lblNewLabel_1.setBounds(192, 269, 46, 14);
 		panel.add(lblNewLabel_1);
 		
 		lblKmh = new JLabel("km/h");
-		lblKmh.setBounds(189, 239, 46, 14);
+		lblKmh.setBounds(192, 204, 46, 14);
 		panel.add(lblKmh);
 		
 		lblLm = new JLabel("l/m\u00B2");
-		lblLm.setBounds(189, 271, 46, 14);
+		lblLm.setBounds(192, 236, 46, 14);
 		panel.add(lblLm);
 		
 		lblInserisciIDati = new JLabel("Inserisci i dati meteo");
