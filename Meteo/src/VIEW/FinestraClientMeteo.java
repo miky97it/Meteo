@@ -1,46 +1,60 @@
 package VIEW;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
+
+import net.miginfocom.swing.MigLayout;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
-public class FinestraMeteo extends JFrame{
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+public class FinestraClientMeteo extends JFrame{
 	private JPanel contentPane,panel_1;
 	private JLabel lblImmettiIlLuogo;
 	private JTextField textField;
 	private JButton btnInvia;
-	private JPanel panel;
 	public JLabel lblIlMeteoDi;
 	public  JLabel lblTemperatura;
 	public  JLabel lblIcona;
 	public  JLabel lblVento;
 	public  JLabel lblPioggia;
 	public  JLabel lblNonHoQuesto;
-	public FinestraMeteo(){
+	private JTabbedPane tabbedPane;
+	private JTextField ip;
+	private JLabel lblIndirizzoIpServer;
+	private JButton btnip;
+	private JLabel lblInformazioni;
+	private JList listIP;
+	private JScrollPane scrollPane;
+	private JSeparator separator;
+	
+	public FinestraClientMeteo(){
 		setAlwaysOnTop(true);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FinestraMeteo.class.getResource("/media/1sole.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FinestraClientMeteo.class.getResource("/media/1sole.png")));
 		this.setTitle("Client");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 268, 307);
+		setBounds(100, 100, 278, 364);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(null);
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		panel = new JPanel();
-		panel.setBounds(0, 0, 252, 268);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
 		panel_1 = new JPanel();
-		panel_1.setBounds(0, 0, 252, 268);
-		panel.add(panel_1);
+		tabbedPane.addTab("File", null, panel_1, null);
 		panel_1.setLayout(null);
 		
 		lblImmettiIlLuogo = new JLabel("Di dove vuoi sapere il meteo ?");
@@ -90,11 +104,52 @@ public class FinestraMeteo extends JFrame{
 		
 		lblIcona = new JLabel("");
 		lblIcona.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIcona.setIcon(new ImageIcon(FinestraMeteo.class.getResource("/media/1sole.png")));
+		lblIcona.setIcon(new ImageIcon(FinestraClientMeteo.class.getResource("/media/1sole.png")));
 		lblIcona.setBounds(133, 137, 109, 106);
 		panel_1.add(lblIcona);
+		panel_1 = new JPanel();
+		tabbedPane.addTab("Impostazioni", null, panel_1, null);
+		panel_1.setLayout(new MigLayout("", "[45px,grow 50][86px,grow]", "[grow][grow][grow][grow][grow]"));
 		
+		lblIndirizzoIpServer = new JLabel("IP Server");
+		panel_1.add(lblIndirizzoIpServer, "cell 0 0,alignx left,aligny center");
+		
+		ip = new JTextField();
+		panel_1.add(ip, "cell 1 0,growx,aligny center");
+		
+				ip.setText("127.0.0.1");
+				ip.setColumns(10);
+				
+				btnip = new JButton("Salva");
+				panel_1.add(btnip, "cell 0 1 2 1,growx,aligny top");
+				
+				separator = new JSeparator();
+				panel_1.add(separator, "cell 0 2 2 1,growx,aligny center");
+				
+				lblInformazioni = new JLabel("I tuoi IP sono:");
+				panel_1.add(lblInformazioni, "cell 0 3 2 1,alignx center");
+				
+				scrollPane = new JScrollPane();
+				panel_1.add(scrollPane, "cell 0 4 2 1,grow");
+				
+				listIP = new JList();
+				scrollPane.setViewportView(listIP);
+		btnip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+
+
+
 		this.setVisible(true);
+	}
+
+	public JList getListIP() {
+		return listIP;
+	}
+
+	public JTextField getIp() {
+		return ip;
 	}
 
 	public void setTextField(JTextField textField) {
@@ -108,6 +163,10 @@ public class FinestraMeteo extends JFrame{
 	public JTextField getTextField() {
 		return textField;
 	}
+	public void setListIP(JList listIP) {
+		this.listIP = listIP;
+	}
+
 	public JButton getBtnInvia() {
 		return btnInvia;
 	}

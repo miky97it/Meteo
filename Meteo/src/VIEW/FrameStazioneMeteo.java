@@ -22,6 +22,11 @@ import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.JTabbedPane;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.AbstractListModel;
 
 public class FrameStazioneMeteo extends JFrame {
 
@@ -44,156 +49,146 @@ public class FrameStazioneMeteo extends JFrame {
 	private JLabel lblInserisciIDati;
 	private JTextField ip;
 	private JLabel lblIndirizzoIpServer;
+	private JButton btnip;
+	private JTabbedPane tabbedPane;
+	private JPanel panel_1;
+	private JLabel lblInformazioni;
+	private JList listIP;
+	private JScrollPane scrollPane;
 	private JSeparator separator;
-	private JButton btnInvia_1;
-	private JLabel lblBeta;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FrameStazioneMeteo frame = new FrameStazioneMeteo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public FrameStazioneMeteo() {
 		setTitle("Stazione meteo");
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 242, 396);
+		setBounds(100, 100, 239, 318);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(0, 0, 226, 282);
+		contentPane.add(tabbedPane);
 		
 		panel = new JPanel();
-		panel.setBounds(0, 0, 226, 357);
-		contentPane.add(panel);
+		tabbedPane.addTab("File", null, panel, null);
 		panel.setLayout(null);
 		
-		lblBeta = new JLabel("Beta");
-		lblBeta.setForeground(Color.RED);
-		lblBeta.setFont(new Font("Tahoma", Font.PLAIN, 57));
-		lblBeta.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBeta.setBounds(10, 11, 205, 44);
-		panel.add(lblBeta);
-		
 		lblNewLabel = new JLabel("Localit\u00E0");
-		lblNewLabel.setBounds(10, 149, 65, 14);
+		lblNewLabel.setBounds(10, 66, 65, 14);
 		panel.add(lblNewLabel);
 		
 		textFieldLocalitá = new JTextField();
-		textFieldLocalitá.setBounds(102, 146, 113, 20);
+		textFieldLocalitá.setBounds(102, 63, 113, 20);
 		panel.add(textFieldLocalitá);
 		textFieldLocalitá.setColumns(10);
 		
 		lblTempo = new JLabel("Tempo");
-		lblTempo.setBounds(10, 179, 46, 14);
+		lblTempo.setBounds(10, 96, 46, 14);
 		panel.add(lblTempo);
-		/*
-
-        ComboBoxRenderer renderer= new ComboBoxRenderer();
-        renderer.setPreferredSize(new Dimension(200, 130));
-        petList.setRenderer(renderer);
-        petList.setMaximumRowCount(3);
-		*/
 		// versione 1.2
 		comboBoxTempo = new JComboBox<>();
 		comboBoxTempo.setModel(new DefaultComboBoxModel(new String[] {"soleggiato", "nubi sparse", "cielo coperto di nuvole", "pioggia", "temporale con fulmini", "neve"}));
-		comboBoxTempo.setBounds(102, 176, 113, 20);
+		comboBoxTempo.setBounds(102, 93, 113, 20);
 		panel.add(comboBoxTempo);
 		
 		vento = new JLabel("vento");
-		vento.setBounds(10, 239, 82, 14);
+		vento.setBounds(10, 156, 82, 14);
 		panel.add(vento);
 		
 		spinner_vento = new JSpinner();
 		spinner_vento.setModel(new SpinnerNumberModel(0, 0, 200, 1));
-		spinner_vento.setBounds(102, 236, 87, 20);
+		spinner_vento.setBounds(102, 153, 87, 20);
 		panel.add(spinner_vento);
 		
 		btnInvia = new JButton("Invia");
-		btnInvia.setBounds(10, 296, 205, 34);
+		btnInvia.setBounds(10, 213, 205, 34);
 		panel.add(btnInvia);
 		
 		labelTemperatura = new JLabel("Temperatura");
-		labelTemperatura.setBounds(10, 209, 82, 14);
+		labelTemperatura.setBounds(10, 126, 82, 14);
 		panel.add(labelTemperatura);
 		
 		spinnerTemperatura = new JSpinner();
 		spinnerTemperatura.setModel(new SpinnerNumberModel(new Float(15), new Float(-273), new Float(60), new Float(0.5)));
-		spinnerTemperatura.setBounds(102, 206, 87, 20);
+		spinnerTemperatura.setBounds(102, 123, 87, 20);
 		panel.add(spinnerTemperatura);
 		
 		labelPioggia = new JLabel("pioggia");
-		labelPioggia.setBounds(10, 269, 82, 14);
+		labelPioggia.setBounds(10, 186, 82, 14);
 		panel.add(labelPioggia);
 		
 		spinnerpioggia = new JSpinner();
-		spinnerpioggia.setBounds(102, 266, 87, 20);
+		spinnerpioggia.setBounds(102, 183, 87, 20);
 		panel.add(spinnerpioggia);
 		
 		lblNewLabel_1 = new JLabel("\u02DAc");
-		lblNewLabel_1.setBounds(189, 211, 46, 14);
+		lblNewLabel_1.setBounds(189, 128, 46, 14);
 		panel.add(lblNewLabel_1);
 		
 		lblKmh = new JLabel("km/h");
-		lblKmh.setBounds(189, 239, 46, 14);
+		lblKmh.setBounds(189, 156, 46, 14);
 		panel.add(lblKmh);
 		
 		lblLm = new JLabel("l/m\u00B2");
-		lblLm.setBounds(189, 271, 46, 14);
+		lblLm.setBounds(189, 188, 46, 14);
 		panel.add(lblLm);
 		
 		lblInserisciIDati = new JLabel("Inserisci i dati meteo");
 		lblInserisciIDati.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInserisciIDati.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblInserisciIDati.setBounds(10, 94, 206, 44);
+		lblInserisciIDati.setBounds(10, 11, 206, 44);
 		panel.add(lblInserisciIDati);
-		
-		ip = new JTextField();
-
-		ip.setText("192.168.4.22");
-		ip.setColumns(10);
-		ip.setBounds(102, 8, 113, 20);
-		panel.add(ip);
-		
-		lblIndirizzoIpServer = new JLabel("IP Server");
-		lblIndirizzoIpServer.setBounds(10, 11, 82, 14);
-		panel.add(lblIndirizzoIpServer);
-		
-		separator = new JSeparator();
-		separator.setBounds(9, 81, 206, 2);
-		panel.add(separator);
-		
-		btnInvia_1 = new JButton("Salva");
-		btnInvia_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnInvia_1.setBounds(10, 36, 206, 34);
-		panel.add(btnInvia_1);
+				
+				panel_1 = new JPanel();
+				tabbedPane.addTab("Impostazioni", null, panel_1, null);
+				panel_1.setLayout(new MigLayout("", "[45px,grow 50][86px,grow]", "[grow][grow][grow][grow][grow]"));
+				
+				lblIndirizzoIpServer = new JLabel("IP Destinatario");
+				panel_1.add(lblIndirizzoIpServer, "cell 0 0,alignx left,aligny center");
+				
+				ip = new JTextField();
+				panel_1.add(ip, "cell 1 0,growx,aligny center");
+				
+						ip.setText("127.0.0.1");
+						ip.setColumns(10);
+						
+						btnip = new JButton("Salva");
+						panel_1.add(btnip, "cell 0 1 2 1,growx,aligny top");
+						
+						separator = new JSeparator();
+						panel_1.add(separator, "cell 0 2 2 1,growx,aligny center");
+						
+						lblInformazioni = new JLabel("I tuoi IP sono:");
+						panel_1.add(lblInformazioni, "cell 0 3 2 1,alignx center");
+						
+						scrollPane = new JScrollPane();
+						panel_1.add(scrollPane, "cell 0 4 2 1,grow");
+						
+						listIP = new JList();
+						scrollPane.setViewportView(listIP);
+				btnip.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
 		
 
 		
 		this.setVisible(true);
 	}
+
+	public JList getListIP() {
+		return listIP;
+	}
+
+	public void setListIP(JList listIP) {
+		this.listIP = listIP;
+	}
+
+	public JButton getBtnip() {
+		return btnip;
+	}
+
 
 	public JTextField getIp() {
 		return ip;
