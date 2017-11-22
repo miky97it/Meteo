@@ -24,14 +24,7 @@ import Model.Messaggio;
 import VIEW.FinestraClientMeteo;
 public class ContrClient implements ActionListener{
 	private FinestraClientMeteo f;
-	//Socket socket;
-	PrintWriter out;
-//	String IP="128728937";
-
-	//String MSG;
-	//final InetAddress IP = InetAddress.getByName((args.length > 0) ? args[0] : "localhost");
-	//final int PORT = (args.length > 1) ? Integer.parseInt(args[1]) : 1234;
-	//final String MSG = (args.length > 2) ? args[2] : "GodAbenFitz";
+	String IP="127.0.0.1";
 	public ContrClient(FinestraClientMeteo f){
 		this.f=f;
 		resetframe();
@@ -46,6 +39,7 @@ public class ContrClient implements ActionListener{
 			}
 		});
 	    f.setListIP(ip);
+	    f.getBtnip().addActionListener(this);
 		f.getBtnInvia().addActionListener(this);
 	}
 	private void resetframe() {
@@ -57,32 +51,13 @@ public class ContrClient implements ActionListener{
 		f.lblVento.setVisible(false);
 	
 }
-	//private void inviaDati(String MSG){
-		//Bortot
-		/*try {
-			System.out.printf("[INFO]Invio di <\'%s\'> a [%s:%d]..\n", MSG, IP, PORT);
-		//	out = new PrintWriter(socket.getOutputStream(), true);		
-			
-				//for (String MSG: args) {
-					//System.out.printf("* Send \'%s\' message to [%s:%d]..\n", MSG, IP, PORT);
-					DatagramSocket s = new DatagramSocket();
-					s.send(new DatagramPacket(MSG.getBytes(), MSG.getBytes().length, IP, PORT));
-					s.close();
-				//}
-			//}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		//----
-	}*/
-	@Override
 	public void actionPerformed(ActionEvent evt){		//invio
 		if(evt.getSource()==f.getBtnInvia()){
 			resetframe();
 			String s=f.getTextField().getText();
 			//System.out.println("Ho letto: "+s);
 			//this.inviaDati(s);
-			Messaggio risposta=InterfacciaDati.inviaDati("#"+s,"localhost",1234);//Nessun json inizia per #
+			Messaggio risposta=InterfacciaDati.inviaDati("#"+s,IP,1234);//Nessun json inizia per #
 			if(risposta.getTempo()==0){
 				f.lblNonHoQuesto.setVisible(true);
 			}else{
@@ -96,12 +71,12 @@ public class ContrClient implements ActionListener{
 				f.lblVento.setVisible(true);
 				f.lblIcona.setIcon(new ImageIcon(FinestraClientMeteo.class.getResource(getIcona(risposta.getTempo()))));//setta l'icona
 				f.lblIcona.setVisible(true);
-			}
-			//f.getTextField().setText("");
-						
-		}else{
-			System.out.println("[ERROR] action non implementata");
+			}		
 		}
+		if(evt.getSource()==f.getBtnip()){
+			IP=f.getIp().getText();
+			System.out.println("[INFO]inserito un nuovo IP "+f.getIp().getText());
+		}	
 	}
 	private String getIcona(int caso){
 		switch(caso){

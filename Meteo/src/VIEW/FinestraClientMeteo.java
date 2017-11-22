@@ -15,6 +15,9 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,8 +46,23 @@ public class FinestraClientMeteo extends JFrame{
 		setAlwaysOnTop(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FinestraClientMeteo.class.getResource("/media/1sole.png")));
 		this.setTitle("Client");
+		try {
+			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 278, 364);
+		setBounds(285, 0, 310, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -55,58 +73,49 @@ public class FinestraClientMeteo extends JFrame{
 		
 		panel_1 = new JPanel();
 		tabbedPane.addTab("File", null, panel_1, null);
-		panel_1.setLayout(null);
+		panel_1.setLayout(new MigLayout("", "[113px,grow][10px,grow][109px,grow]", "[31px,grow][32px,grow][28px,grow][32px,grow][31px,grow][28px,grow]"));
 		
 		lblImmettiIlLuogo = new JLabel("Di dove vuoi sapere il meteo ?");
 		lblImmettiIlLuogo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImmettiIlLuogo.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblImmettiIlLuogo.setBounds(10, 12, 232, 31);
-		panel_1.add(lblImmettiIlLuogo);
+		panel_1.add(lblImmettiIlLuogo, "cell 0 0 3 1,grow");
 		
 		textField = new JTextField();
-		textField.setBounds(10, 55, 113, 31);
-		panel_1.add(textField);
+		panel_1.add(textField, "cell 0 1,grow");
 		textField.setColumns(10);
 		
 		btnInvia = new JButton("invia");
-		btnInvia.setBounds(133, 54, 109, 31);
-		panel_1.add(btnInvia);
+		panel_1.add(btnInvia, "cell 2 1,grow");
 		
 		lblIlMeteoDi = new JLabel("il meteo di \u00E9");
 		lblIlMeteoDi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIlMeteoDi.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblIlMeteoDi.setBounds(10, 98, 232, 28);
-		panel_1.add(lblIlMeteoDi);
+		panel_1.add(lblIlMeteoDi, "cell 0 2 3 1,grow");
 		
 		lblTemperatura = new JLabel("temperatura:");
 		lblTemperatura.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTemperatura.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblTemperatura.setBounds(10, 138, 199, 31);
-		panel_1.add(lblTemperatura);
+		panel_1.add(lblTemperatura, "cell 0 3 3 1,grow");
 		
 		lblVento = new JLabel("vento:");
 		lblVento.setHorizontalAlignment(SwingConstants.LEFT);
 		lblVento.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblVento.setBounds(10, 181, 126, 31);
-		panel_1.add(lblVento);
+		panel_1.add(lblVento, "cell 0 4 3 1,alignx left,growy");
 		
 		lblPioggia = new JLabel("pioggia");
 		lblPioggia.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPioggia.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPioggia.setBounds(10, 224, 126, 28);
-		panel_1.add(lblPioggia);
+		panel_1.add(lblPioggia, "cell 0 5 3 1,alignx left,growy");
 		
 		lblNonHoQuesto = new JLabel("Non ho questo dato");
 		lblNonHoQuesto.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNonHoQuesto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNonHoQuesto.setBounds(10, 113, 232, 31);
-		panel_1.add(lblNonHoQuesto);
+		panel_1.add(lblNonHoQuesto, "cell 0 2 3 3,growx,aligny center");
 		
 		lblIcona = new JLabel("");
 		lblIcona.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIcona.setIcon(new ImageIcon(FinestraClientMeteo.class.getResource("/media/1sole.png")));
-		lblIcona.setBounds(133, 137, 109, 106);
-		panel_1.add(lblIcona);
+		panel_1.add(lblIcona, "cell 2 3 1 3,grow");
 		panel_1 = new JPanel();
 		tabbedPane.addTab("Impostazioni", null, panel_1, null);
 		panel_1.setLayout(new MigLayout("", "[45px,grow 50][86px,grow]", "[grow][grow][grow][grow][grow]"));
@@ -134,14 +143,16 @@ public class FinestraClientMeteo extends JFrame{
 				
 				listIP = new JList();
 				scrollPane.setViewportView(listIP);
-		btnip.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
-
 
 		this.setVisible(true);
+	}
+
+	public JButton getBtnip() {
+		return btnip;
+	}
+
+	public void setBtnip(JButton btnip) {
+		this.btnip = btnip;
 	}
 
 	public JList getListIP() {

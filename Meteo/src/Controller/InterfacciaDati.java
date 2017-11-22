@@ -68,18 +68,13 @@ public class InterfacciaDati implements Serializable{
 		}
 		try {
 			  DatagramSocket s = new DatagramSocket();
-			  /*
-			 byte[] IMMACoolSerializedMessage=fromMessaggioToDataArray(MSG);
-				System.out.println("[DATA]---Invio di un pacchetto---");
-					System.out.println("\t Lunghezza: \t"+IMMACoolSerializedMessage.length);
-					System.out.println("\t A: \t\t"+IP+":"+throwWhatPort);
-			 //System.out.println("[INFO]Invio di \'%s\'> a [%s:%d]..\n", IMMACoolSerializedMessage, IP, throwWhatPort);
-			  */
-			  
-			System.out.print("\n[DATA]---Invio di un pacchetto---\n\t Contenuto ");
-			System.out.println(str);
+
+			System.out.print("\n[DATA]------Invio di un pacchetto------\n\t Contenuto ");
+			System.out.print(str);
 				System.out.print("\n\t Lunghezza: \t"+str.length());
-				System.out.println("\t A: \t\t"+IP+":"+throwWhatPort);
+				System.out.print("\n\t A: \t\t"+IP+":"+throwWhatPort);
+				 System.out.println("\n\t Da: \t\t"+s.getLocalAddress());
+
 
 			  try {
 				s.send(new DatagramPacket(str.getBytes(),str.length(), IP, throwWhatPort));
@@ -103,13 +98,15 @@ public class InterfacciaDati implements Serializable{
 	                DatagramPacket dp = new DatagramPacket(buf, buf.length);
 	                s.receive(dp);
 	                running=false;
-	                System.out.print("[DATA]---Risposta ricevuta---\n\t Contenuto ");
-	    			System.out.println(dp.getData());
+	                System.out.print("[DATA]------Risposta ricevuta------\n\t Contenuto ");
+	    			System.out.print(dp.getData());
 	    				System.out.print("\n\t Lunghezza: \t"+dp.getLength());
-	    				System.out.println("\t A: \t\t"+IP+":"+throwWhatPort);
+	    				System.out.print("\n\t A: \t\t"+IP+":"+throwWhatPort);
 	               // String rcvd = "rcvd from " + dp.getAddress() + ", " + dp.getPort() + ": "+ new String(dp.getData(), 0, dp.getLength());
 	                //System.out.println(rcvd);
+	    				System.out.print("\n\t");
 	    			 m=InterfacciaDati.JsonToMessaggio(new String(dp.getData()));
+	    			 System.out.println();
 	    			//m=InterfacciaDati.fromDataArrayToMessaggio(dp.getData());
 				}
 	            catch (SocketTimeoutException e) {

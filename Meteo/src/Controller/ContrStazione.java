@@ -13,11 +13,14 @@ import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import Model.Messaggio;
 import VIEW.FinestraClientMeteo;
 import VIEW.FrameStazioneMeteo;
-public class ContrStazione implements ActionListener{
+public class ContrStazione implements ActionListener,ChangeListener{
 	private FrameStazioneMeteo fm;
 	String IP="127.0.0.1";
 	public ContrStazione(FrameStazioneMeteo fm){
@@ -33,7 +36,9 @@ public class ContrStazione implements ActionListener{
 			}
 		});
 	    fm.setListIP(ip);
+	    fm.getBtnip().addActionListener(this);
 		fm.getBtnInvia().addActionListener(this);
+		fm.getSlidermesmin().addChangeListener(this);
 		//fm.getComboBox().addActionListener(this);
 	}
 
@@ -60,17 +65,9 @@ public class ContrStazione implements ActionListener{
 			InterfacciaDati.inviaDati(m,IP,1234);
 		}
 		if(evt.getSource()==fm.getBtnip()){
-			IP=fm.getIp().getSelectedText();
-			System.out.println("[INFO]inserito un nuovo IP"+fm.getIp().getSelectedText());
+			IP=fm.getIp().getText();
+			System.out.println("[INFO]inserito un nuovo IP"+fm.getIp().getText());
 		}
-		/*else{
-			String combo=(String) fm.getComboBox().getSelectedItem();
-			switch(combo){
-				case "vento":
-				break;
-				case "":
-			}
-		}*/
 	}
 	private String[] getIp(){
 	    ArrayList<String> lip = new ArrayList<String>();
@@ -96,5 +93,11 @@ public class ContrStazione implements ActionListener{
 	        throw new RuntimeException(e);
 	    }
 	    return lip.toArray(new String[lip.size()]);
+	}
+
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		JSlider slider= fm.getSlidermesmin();
+		//if()
 	}
 }
